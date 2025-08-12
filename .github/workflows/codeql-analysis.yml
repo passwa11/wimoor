@@ -16,6 +16,11 @@ jobs:
         distribution: 'temurin'
         java-version: '8'
 
+    - name: Debug - Show current directory and jar files
+      run: |
+        pwd
+        ls erp-boot/src/main/resources/lib/
+
     - name: Install ocean.client.java.biz.jar to Maven local repo
       run: |
         mvn install:install-file \
