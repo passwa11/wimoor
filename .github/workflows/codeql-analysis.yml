@@ -2,12 +2,6 @@ name: "CodeQL"
 
 on:
   workflow_dispatch:
-  # push:
-  #   branches: [main]
-  # pull_request:
-  #   branches: [main]
-  # schedule:
-  #   - cron: '0 2 * * 1'
 
 jobs:
   analyze:
@@ -25,10 +19,11 @@ jobs:
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v3
       with:
-        languages: java, javascript  # 根据你的项目实际语言选择
+        languages: java  # 根据你的项目实际语言选择
 
-    - name: Autobuild
-      uses: github/codeql-action/autobuild@v3
+    # 用自定义的 Maven 构建命令替代 autobuild
+    - name: Build with Maven
+      run: mvn clean package -DskipTests
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
