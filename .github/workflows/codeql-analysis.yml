@@ -16,6 +16,24 @@ jobs:
         distribution: 'temurin'
         java-version: '8'
 
+    - name: Install ocean.client.java.biz.jar to Maven local repo
+      run: |
+        mvn install:install-file \
+          -DgroupId=com.biz \
+          -DartifactId=biz \
+          -Dversion=1.0 \
+          -Dpackaging=jar \
+          -Dfile=erp-boot/src/main/resources/lib/ocean.client.java.biz.jar
+
+    - name: Install aop-sdk-message-0.9.0.jar to Maven local repo
+      run: |
+        mvn install:install-file \
+          -DgroupId=alibaba.message \
+          -DartifactId=alibaba.message \
+          -Dversion=0.9.0 \
+          -Dpackaging=jar \
+          -Dfile=erp-boot/src/main/resources/lib/aop-sdk-message-0.9.0.jar
+
     - name: Build with Maven
       run: mvn clean package -DskipTests
 
